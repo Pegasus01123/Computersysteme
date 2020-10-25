@@ -1,0 +1,5 @@
+\babel@toc {ngerman}{}
+\contentsline {section}{\numberline {1}Aufgabe}{2}%
+\contentsline {section}{\numberline {2}Aufgabe}{3}%
+\contentsline {section}{\numberline {3}Aufgabe}{4}%
+\contentsline {section}{\numberline {4}Aufgabe}{5}%
