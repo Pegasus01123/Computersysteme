@@ -1,0 +1,133 @@
+
+
+
+\begin{tikzpicture}[scale=1.3, transform shape,circuit logic IEC]
+
+% Koordinaten für Kreuzpunkte
+
+\coordinate (A) at (1,3.5);
+\fill (A) circle (2pt);
+
+\coordinate (B) at (3,1.5);
+\fill (B) circle (2pt);
+\coordinate (C) at (3.25,2.5);
+\fill (C) circle (2pt);
+\coordinate (D) at (3.5,4);
+\fill (D) circle (2pt);
+
+\coordinate (E) at (5,3.5);
+\fill (E) circle (2pt);
+
+\coordinate (F) at (6.5,2);
+\fill (F) circle (2pt);
+\coordinate (G) at (6.75,3);
+\fill (G) circle (2pt);
+\coordinate (H) at (7,4);
+\fill (H) circle (2pt);
+
+\coordinate (I) at (8.5,1.5);
+\fill (I) circle (2pt);
+\coordinate (J) at (8.75,2.5);
+\fill (J) circle (2pt);
+\coordinate (K) at (9,3.5);
+\fill (K) circle (2pt);
+
+\coordinate (L) at (10.5,2);
+\fill (L) circle (2pt);
+
+\coordinate (M) at (12,1.5);
+\fill (M) circle (2pt);
+\coordinate (N) at (12.25,2);
+\fill (N) circle (2pt);
+\coordinate (O) at (12.5,4);
+\fill (O) circle (2pt);
+
+\coordinate (P) at (4.25,-1);
+\coordinate (Q) at (5.5,-1);
+\coordinate (R) at (10,-1);
+\coordinate (S) at (11,-1);
+
+\coordinate (T) at (0,0);
+\coordinate (U) at (0.5,0);
+\coordinate (V) at (1,0);
+\coordinate (W) at (1.5,0);
+
+\coordinate (X) at (4.5,-6.175);
+\fill (X) circle (2pt);
+
+%Eingangsvariabel
+\node (x1) at (0,3.5) {$X$};
+
+%Takt
+\node (x2) at (4.5,-9) {$C$};
+
+% Gatter
+\node[not gate] at ($(x1) + (2,0.5)$) (z1){};
+
+\node[and gate, logic gate inputs=nnn, rotate=270] at ($(B)+(0.25,-1.5)$) (z2) {};
+\node[and gate, logic gate inputs=nnn, rotate=270] at ($(F)+(0.25,-2)$) (z4) {};
+
+\node[and gate, logic gate inputs=nnn, rotate=270] at ($(I)+(0.25,-1.5)$) (z5) {};	
+\node[and gate, logic gate inputs=nnn, rotate=270] at ($(M)+(0.25,-1.5)$) (z7) {};
+
+\node[or gate, logic gate inputs=nnn, rotate=270] at ($(E)+(0,-5.5)$) (z8) {};
+\node[or gate, logic gate inputs=nnn, rotate=270] at ($(L)+(0,-4)$) (z9) {};
+
+\node[flipflop D, rotate=180] at ($(z8)+(-2,-2)$) (D1) {};
+\node[flipflop D, rotate=180] at ($(z8)+(-2,-5)$) (D2) {};
+
+% D Flip Flop
+\draw (D1.pin 4) node[above] {\tiny$\overline{Z_{1}}$} -|  (W);
+\draw (D1.pin 6) node[above] {\tiny$Z_{1}$} -| (V);
+\draw (D1.pin 1) node[above] {\tiny$Z^+_{1}$} -| (z8);
+
+\draw (D2.pin 4) node[above] {\tiny$\overline{Z_{0}}$} -| (U);
+\draw (D2.pin 6) node[above] {\tiny$Z_{0}$} -| (T);
+\draw (D2.pin 1) node[above] {\tiny$Z^+_{0}$} -| (z9);
+
+%Verbindungen von X
+\draw(x1.east) -- (K);
+\draw (A.east) |- (z1);
+\draw(z1) -- (O);
+
+%Verbindungen von C
+\draw (D1.pin 3) -| (X);
+\draw (D2.pin 3) -- (X);
+\draw (X) -| (x2);
+
+%UND Gatter
+\draw(B) -| (z2.input 3);
+\draw(C) -| (z2.input 2);
+\draw(D) -| (z2.input 1);
+
+\draw(F) -| (z4.input 3);
+\draw(G) -| (z4.input 2);
+\draw(H) -| (z4.input 1);
+
+\draw(I) -| (z5.input 3);
+\draw(J) -| (z5.input 2);
+\draw(K) -| (z5.input 1);
+
+\draw(M) -| (z7.input 3);
+\draw(N) -| (z7.input 2);
+\draw(O) -| (z7.input 1);
+
+%ODER Gatter
+\draw(z2.output) |- (P);
+\draw(P) -| (z8.input 3);
+\draw(E) |- (z8.input 2);
+\draw(z4.output) |- (Q);
+\draw(Q) -| (z8.input 1);
+
+\draw(z5.output) |- (R);
+\draw(R) -| (z9.input 3);
+\draw(L) |- (z9.input 2);
+\draw(z7.output) |- (S);
+\draw(S) -| (z9.input 1);
+
+\draw(T) |- (G);
+\draw(U) |- (J);
+\draw(V) |- (N);
+\draw(W) |- (M);
+
+\end{tikzpicture}

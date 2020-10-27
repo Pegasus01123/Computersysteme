@@ -4,7 +4,12 @@
 \usepackage{babel}
 \usepackage{microtype}
 \usepackage{graphicx}
-\usetikzlibrary{arrows , automata , positioning}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage[RPvoltages]{circuitikz}
+\usetikzlibrary{arrows , automata , positioning , circuits.logic.IEC}
+
+
 
 \author{Ann-Christin Falkenreck}
 \title {EA2}
@@ -107,7 +112,7 @@ Z^+_{2}=Z_{0}x$ v $Z_{1}\overline{x}$ v $Z_{2}\overline{x}$
 
 \section{Aufgabe} 
 
-\vspace{1,5 cm}
+\vspace{0,5 cm}
 
 \subsection{}
 \begin{tabular}{cccc}  
@@ -122,16 +127,26 @@ Z^+_{2}=Z_{0}x$ v $Z_{1}\overline{x}$ v $Z_{2}\overline{x}$
 	11 & 1 & 10 & 0 \\
 \end{tabular}
 
-\vspace{1,5 cm}
+\vspace{0,5 cm}
 
 \subsection{}
 $y=\overline{Z_{1}}Z_{0}x$ v $Z_{1}\overline{Z_{0}}x$ \\
 $Z^+_{1}= \overline{Z_{1}}\overline{Z_{0}}\overline{x}$ v x v $Z_{1}Z_0\overline{x}$ \\
 $Z^+_{0}=\overline{Z_{1}Z_{0}}x$ v $\overline{Z_{0}}$ v $Z_{1}\overline{Z_{0}x}$
 
+\subsection{}
+
+\begin{center}
+\input{sn}
+\end{center}
+
 \clearpage
 
 \section{Aufgabe} 
+
+
+
+
 
 
 \end{document}
