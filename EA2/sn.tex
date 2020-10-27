@@ -4,6 +4,7 @@
 \begin{tikzpicture}[scale=1.3, transform shape,circuit logic IEC]
 
 % Koordinaten für Kreuzpunkte
+
 \coordinate (A) at (1,3.5);
 \fill (A) circle (2pt);
 
@@ -51,30 +52,48 @@
 \coordinate (V) at (1,0);
 \coordinate (W) at (1.5,0);
 
+\coordinate (X) at (4.5,-6.175);
+\fill (X) circle (2pt);
+
 %Eingangsvariabel
 \node (x1) at (0,3.5) {$X$};
+
+%Takt
+\node (x2) at (4.5,-9) {$C$};
 
 % Gatter
 \node[not gate] at ($(x1) + (2,0.5)$) (z1){};
 
 \node[and gate, logic gate inputs=nnn, rotate=270] at ($(B)+(0.25,-1.5)$) (z2) {};
-	
 \node[and gate, logic gate inputs=nnn, rotate=270] at ($(F)+(0.25,-2)$) (z4) {};
 
-\node[and gate, logic gate inputs=nnn, rotate=270] at ($(I)+(0.25,-1.5)$) (z5) {};
-	
+\node[and gate, logic gate inputs=nnn, rotate=270] at ($(I)+(0.25,-1.5)$) (z5) {};	
 \node[and gate, logic gate inputs=nnn, rotate=270] at ($(M)+(0.25,-1.5)$) (z7) {};
 
 \node[or gate, logic gate inputs=nnn, rotate=270] at ($(E)+(0,-5.5)$) (z8) {};
-
 \node[or gate, logic gate inputs=nnn, rotate=270] at ($(L)+(0,-4)$) (z9) {};
 
+\node[flipflop D, rotate=180] at ($(z8)+(-2,-2)$) (D1) {};
+\node[flipflop D, rotate=180] at ($(z8)+(-2,-5)$) (D2) {};
 
-%Verbindungen
+% D Flip Flop
+\draw (D1.pin 4) node[above] {\tiny$\overline{Z_{1}}$} -|  (W);
+\draw (D1.pin 6) node[above] {\tiny$Z_{1}$} -| (V);
+\draw (D1.pin 1) node[above] {\tiny$Z^+_{1}$} -| (z8);
+
+\draw (D2.pin 4) node[above] {\tiny$\overline{Z_{0}}$} -| (U);
+\draw (D2.pin 6) node[above] {\tiny$Z_{0}$} -| (T);
+\draw (D2.pin 1) node[above] {\tiny$Z^+_{0}$} -| (z9);
+
+%Verbindungen von X
 \draw(x1.east) -- (K);
 \draw (A.east) |- (z1);
 \draw(z1) -- (O);
 
+%Verbindungen von C
+\draw (D1.pin 3) -| (X);
+\draw (D2.pin 3) -- (X);
+\draw (X) -| (x2);
 
 %UND Gatter
 \draw(B) -| (z2.input 3);
