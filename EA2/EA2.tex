@@ -20,51 +20,49 @@
 \maketitle
 \tableofcontents
 
-\section{Aufgabe} 
+\section{Äquivalenz von Automaten} 
 
-\begin{center}
-\begin{tikzpicture}[>=stealth',shorten >=1pt,auto,node distance=3.5cm]
-%Knoten
-\node (1) [state with output, thick] {1 \nodepart{lower} 1};
-\node (2) [state with output, thick, right of= 1] {2 \nodepart{lower} 1};
-\node (3) [state with output, thick, below of= 2] {3/0 \nodepart{lower} 0};
-\node (4) [state with output, thick, right of= 3] {3/1 \nodepart{lower} 1};
-\node (5) [state with output, thick, right of= 4] {4 \nodepart{lower} 0};
-\node (6) [state with output, thick, below of= 4] {5/0 \nodepart{lower} 0};
-\node (7) [state with output, thick, left of= 6] {5/1 \nodepart{lower} 1};
+\begin{center}	
+	\begin{tikzpicture}[>=stealth',shorten >=1pt,auto,node distance=3.5cm]
+		%Knoten
+		\node (1) [state with output, thick] {1 \nodepart{lower} 1};
+		\node (2) [state with output, thick, right of= 1] {2 \nodepart{lower} 1};
+		\node (3) [state with output, thick, below of= 2] {3/0 \nodepart{lower} 0};
+		\node (4) [state with output, thick, right of= 3] {3/1 \nodepart{lower} 1};
+		\node (5) [state with output, thick, right of= 4] {4 \nodepart{lower} 0};
+		\node (6) [state with output, thick, below of= 4] {5/0 \nodepart{lower} 0};
+		\node (7) [state with output, thick, left of= 6] {5/1 \nodepart{lower} 1};
 
-%Verbindungen
-\path[thick,->]
-(1) edge node {0} (2)
-(1) edge [bend angle=15, bend right] node {0} (3)
+		%Verbindungen
+		\path[thick,->]
+		(1) edge node {0} (2)
+		(1) edge [bend angle=15, bend right] node {0} (3)
 
-(2) edge [loop above] node {0} (2)
+		(2) edge [loop above] node {0} (2)
 
-(3) edge node {0} (2)
-(3) edge [bend angle=-30, bend left,below] node {1} (5)
+		(3) edge node {0} (2)
+		(3) edge [bend angle=-30, bend left,below] node {1} (5)
 
-(4) edge [right] node {0} (2)
-(4) edge [bend angle=15, bend left] node {1} (5)
+		(4) edge [right] node {0} (2)
+		(4) edge [bend angle=15, bend left] node {1} (5)
 
-(5) edge node {1} (4)
-(5) edge node {0} (6)
+		(5) edge node {1} (4)
+		(5) edge node {0} (6)
 
-(6) edge [bend angle=20, bend left] node {1} (1)
+		(6) edge [bend angle=20, bend left] node {1} (1)
 
-(7) edge node {0} (6)
-(7) edge [bend angle=15, bend left] node {1} (1)
+		(7) edge node {0} (6)
+		(7) edge [bend angle=15, bend left] node {1} (1);
+	\end{tikzpicture}
 
-;
-\end{tikzpicture}
 \end{center}
 
 \clearpage
 
-\section{Aufgabe} 
+\section{Analyse von Schaltwerken} 
 
-\vspace{1.5cm}
+\subsection{Zustandstabelle}
 
-\subsection{}
 \begin{tabular}{llll}  
 	Z & x & Z+ & y \\ \hline	
 	0 & 0 & 1 & 1  \\ 
@@ -74,17 +72,17 @@
 	2 & 0 & 2 & 1 \\
 	2 & 1 & 0 & 1 \\	 
 \end{tabular}
-
 \vspace{1.5cm}
 
-\subsection{}
-$Z^+_{0}=Z_{2}x \\
-Z^+_{1}=Z_{0}\overline{x}$ v $Z_{1}x \\
-Z^+_{2}=Z_{0}x$ v $Z_{1}\overline{x}$ v $Z_{2}\overline{x}$
+\subsection{Übergangs- und Ausgangsfunktionen}
 
+	$Z^+_{0}=Z_{2}x \\
+	Z^+_{1}=Z_{0}\overline{x}$ v $Z_{1}x \\
+	Z^+_{2}=Z_{0}x$ v $Z_{1}\overline{x}$ v $Z_{2}\overline{x}$
 \vspace{1.5cm}
 
-\subsection{}
+\subsection{Zustandsgraph}
+
 \begin{center}
 	\begin{tikzpicture}[>=stealth',shorten >=1pt,auto,node distance=3.5cm]
 	
@@ -104,17 +102,15 @@ Z^+_{2}=Z_{0}x$ v $Z_{1}\overline{x}$ v $Z_{2}\overline{x}$
 	(3)	edge [loop right] node {1/0} (3)
 	(3) edge node {0/1} (2);
 	
-	
 	\end{tikzpicture}
 \end{center}
 
 \clearpage
 
-\section{Aufgabe} 
+\section{Synthese von Schaltwerken} 
 
-\vspace{0,5 cm}
+\subsection{Zustandstabelle}
 
-\subsection{}
 \begin{tabular}{cccc}  
 	$Z_{1}Z_{0}$& x & $Z^+_{1}Z^+_{0}$ & y \\ \hline	
 	00 & 0 & 11 & 0  \\ 
@@ -126,27 +122,55 @@ Z^+_{2}=Z_{0}x$ v $Z_{1}\overline{x}$ v $Z_{2}\overline{x}$
 	11 & 0 & 00 & 0 \\
 	11 & 1 & 10 & 0 \\
 \end{tabular}
-
 \vspace{0,5 cm}
 
-\subsection{}
+\subsection{Übergangs- und Ausgangsfunktionen}
+
 $y=\overline{Z_{1}}Z_{0}x$ v $Z_{1}\overline{Z_{0}}x$ \\
 $Z^+_{1}= \overline{Z_{1}}\overline{Z_{0}}\overline{x}$ v x v $Z_{1}Z_0\overline{x}$ \\
 $Z^+_{0}=\overline{Z_{1}Z_{0}}x$ v $\overline{Z_{0}}$ v $Z_{1}\overline{Z_{0}x}$
 
-\subsection{}
+\subsection{Schaltplan}
 
 \begin{center}
-\input{sn}
+	\input{sn}
 \end{center}
 
 \clearpage
 
-\section{Aufgabe} 
+\section{Zustandsminimierung} 
 
+\subsection{Zustandstabelle}
 
+\begin{tabular}{c|cc|c}  
+	Zustand & Folgezustand & bei & Ausgabe \\ 	
+	   & x=0 & x=1 & y  \\ \hline
+	1 & 7 & 2 & 1 \\ 
+	2 & 2 & 4 & 0 \\
+	3 & 6 & 4 & 0 \\ 
+	4 & 6 & 3 & 0 \\
+	5 & 3 & 4 & 1 \\ 
+	6 & 5 & 2 & 1 \\
+	7 & 4 & 3 & 1 \\
+\end{tabular}
 
+\subsection{Stufe 0 Tabelle}
 
+Stufe 0 \\
+\begin{tabular}{c|l}  \hline
+	(1,5) & (3,7) (2,4) \\
+	(1,6) & (5,7)  \\
+	(1,7) & (4,7) (2,3) \\
+	(2,3) & (2,6)  \\
+	(2,4) & (2,6) (3,4) \\
+	(3,4) &    \\
+	(5,6) & (3,5) (2,4) \\
+	(5,7) & (3,4)  \\
+	(6,7) & (4,5) (2,3) \\
+\end{tabular}
 
+\subsection{Äquivalente Zustandspaare}
+
+(1,6), (3,4), (5,7)
 
 \end{document}
