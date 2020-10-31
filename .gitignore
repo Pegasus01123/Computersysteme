@@ -354,4 +354,6 @@ MigrationBackup/
 
 # LaTeX
 .log
-
+.aux
+.toc
+.synctex.gz
